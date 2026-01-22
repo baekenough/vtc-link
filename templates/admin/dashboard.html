@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}대시보드 - VTC-Link 관리{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">대시보드</h1>
+    <p class="page-subtitle">시스템 전체 현황을 한눈에 확인하세요</p>
+</div>
+
+<div class="dashboard-grid">
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">등록된 병원</span>
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </div>
+        </div>
+        <div class="stat-value">{{ stats.total_hospitals | default(0) }}</div>
+        <div class="stat-change positive">
+            <span>활성화 상태</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">오늘 처리 건수</span>
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+            </div>
+        </div>
+        <div class="stat-value">{{ stats.today_records | default(0) }}</div>
+        <div class="stat-change positive">
+            <span>정상 처리</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">성공률</span>
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+        </div>
+        <div class="stat-value">{{ stats.success_rate | default("--") }}%</div>
+        <div class="stat-change {% if stats.success_rate and stats.success_rate >= 95 %}positive{% else %}negative{% endif %}">
+            <span>최근 24시간</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-label">오류 발생</span>
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div>
+        </div>
+        <div class="stat-value">{{ stats.error_count | default(0) }}</div>
+        <div class="stat-change {% if stats.error_count and stats.error_count > 0 %}negative{% else %}positive{% endif %}">
+            <span>최근 24시간</span>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-lg">
+    <div class="card-header">
+        <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+            병원별 현황
+        </h2>
+        <a href="{{ request.url_for('admin_status') }}" class="nav-link">전체 보기</a>
+    </div>
+    <div class="card-body">
+        {% if recent_status %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>병원 ID</th>
+                        <th>마지막 실행</th>
+                        <th>상태</th>
+                        <th>후처리 실패</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in recent_status[:5] %}
+                    <tr>
+                        <td class="cell-mono">{{ item.hospital_id }}</td>
+                        <td class="cell-timestamp">{{ item.last_run_at | default("--") }}</td>
+                        <td>
+                            {% if item.last_status == "success" %}
+                            <span class="badge badge-success">성공</span>
+                            {% elif item.last_status == "error" %}
+                            <span class="badge badge-error">오류</span>
+                            {% elif item.last_status == "running" %}
+                            <span class="badge badge-info">실행중</span>
+                            {% else %}
+                            <span class="badge badge-neutral">대기</span>
+                            {% endif %}
+                        </td>
+                        <td class="cell-mono">{{ item.postprocess_fail_count | default(0) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </div>
+            <h3 class="empty-state-title">상태 데이터 없음</h3>
+            <p class="empty-state-text">아직 등록된 병원 상태 정보가 없습니다.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            최근 로그
+        </h2>
+        <a href="{{ request.url_for('admin_logs') }}" class="nav-link">전체 보기</a>
+    </div>
+    <div class="card-body" style="padding: 0;">
+        {% if recent_logs %}
+        {% for log in recent_logs[:5] %}
+        <div class="log-entry">
+            <div class="log-meta">
+                <span class="log-timestamp">{{ log.timestamp | default("--") }}</span>
+                <span class="badge level-{{ log.level | default('INFO') }}">{{ log.level | default("INFO") }}</span>
+            </div>
+            <div class="log-content">
+                <div class="log-event">{{ log.event | default("이벤트 없음") }}</div>
+                {% if log.message %}
+                <div class="log-message">{{ log.message }}</div>
+                {% endif %}
+                <div class="log-details">
+                    {% if log.hospital_id %}
+                    <span class="log-detail"><strong>병원:</strong> {{ log.hospital_id }}</span>
+                    {% endif %}
+                    {% if log.stage %}
+                    <span class="log-detail"><strong>단계:</strong> {{ log.stage }}</span>
+                    {% endif %}
+                    {% if log.duration_ms %}
+                    <span class="log-detail"><strong>소요:</strong> {{ log.duration_ms }}ms</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+            </div>
+            <h3 class="empty-state-title">로그 없음</h3>
+            <p class="empty-state-text">아직 기록된 로그가 없습니다.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

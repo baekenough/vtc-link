@@ -1,0 +1,12 @@
+services:
+  vtc-link:
+    build: .
+    container_name: vtc-link
+    ports:
+      - "8000:8000"
+    environment:
+      - ADMIN_ID=admin
+      - ADMIN_PASSWORD=admin
+    volumes:
+      - ./hospitals.yaml:/app/hospitals.yaml
+      - ./data:/app/data

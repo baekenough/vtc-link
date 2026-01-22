@@ -1,0 +1,13 @@
+site_name: VTC Link
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Data Model: data-model.md
+  - Connectors: connectors.md
+  - Pipeline: pipeline.md
+  - Admin UI: admin-ui.md
+  - Logging & Monitoring: logging-monitoring.md
+  - Error Codes: error-codes.md
+  - postprocess: postprocess.md
+  - Testing: testing.md
+  - Deployment: deployment.md

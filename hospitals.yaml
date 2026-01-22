@@ -1,0 +1,27 @@
+hospital:
+  hospital_id: "HOSP_A"
+  connector_type: "pull_db_view"
+  enabled: true
+  schedule_minutes: 5
+  transform_profile: "HOSP_A"
+  db:
+    type: "oracle"
+    host: "localhost"
+    port: 1521
+    service: "ORCLCDB"
+    username: "readonly"
+    password: "readonly"
+    view_name: "VITAL_VIEW"
+    query: "SELECT * FROM VITAL_VIEW"
+  postprocess:
+    mode: "update_flag"
+    table: "VITAL_VIEW"
+    key_column: "ID"
+    key_value: ""
+    key_value_source: "vital_id"
+    flag_column: "SENT_YN"
+    flag_value: "Y"
+    retry: 3
+    columns: []
+    values: {}
+    sources: {}

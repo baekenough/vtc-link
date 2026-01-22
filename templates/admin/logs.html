@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}로그 - VTC-Link 관리{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">시스템 로그</h1>
+    <p class="page-subtitle">전체 시스템 이벤트 및 오류 기록</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            로그 목록
+        </h2>
+        <span class="text-sm text-muted">총 {{ logs | length | default(0) }}건</span>
+    </div>
+
+    {% if logs %}
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>시간</th>
+                    <th>레벨</th>
+                    <th>이벤트</th>
+                    <th>병원 ID</th>
+                    <th>단계</th>
+                    <th>오류 코드</th>
+                    <th>메시지</th>
+                    <th>소요 시간</th>
+                    <th>레코드 수</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td class="cell-timestamp">{{ log.timestamp | default("--") }}</td>
+                    <td>
+                        <span class="badge level-{{ log.level | default('INFO') }}">{{ log.level | default("INFO") }}</span>
+                    </td>
+                    <td><strong>{{ log.event | default("--") }}</strong></td>
+                    <td class="cell-mono">{{ log.hospital_id | default("--") }}</td>
+                    <td>{{ log.stage | default("--") }}</td>
+                    <td class="cell-mono">
+                        {% if log.error_code %}
+                        <span class="badge badge-error">{{ log.error_code }}</span>
+                        {% else %}
+                        --
+                        {% endif %}
+                    </td>
+                    <td class="text-secondary">{{ log.message | default("--") | truncate(50) }}</td>
+                    <td class="cell-mono">
+                        {% if log.duration_ms %}
+                        {{ log.duration_ms }}ms
+                        {% else %}
+                        --
+                        {% endif %}
+                    </td>
+                    <td class="cell-mono">{{ log.record_count | default("--") }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card-body">
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+            </div>
+            <h3 class="empty-state-title">로그 기록 없음</h3>
+            <p class="empty-state-text">아직 기록된 시스템 로그가 없습니다.</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="card mt-lg">
+    <div class="card-header">
+        <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            로그 레벨 안내
+        </h2>
+    </div>
+    <div class="card-body">
+        <div class="config-list">
+            <div class="config-item">
+                <span class="config-key">DEBUG</span>
+                <span class="badge level-DEBUG">디버그 정보 - 개발/문제 해결용 상세 로그</span>
+            </div>
+            <div class="config-item">
+                <span class="config-key">INFO</span>
+                <span class="badge level-INFO">정보 - 정상 작동 상태 기록</span>
+            </div>
+            <div class="config-item">
+                <span class="config-key">WARNING</span>
+                <span class="badge level-WARNING">경고 - 주의가 필요한 상황</span>
+            </div>
+            <div class="config-item">
+                <span class="config-key">ERROR</span>
+                <span class="badge level-ERROR">오류 - 처리 실패 또는 시스템 문제</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
