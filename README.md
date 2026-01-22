@@ -4,7 +4,8 @@
 
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**[한국어 문서 (Korean)](README_ko.md)**
 
 ## Overview
 
@@ -245,10 +246,3 @@ Full documentation is available in the `docs/` directory:
 - [Admin UI](docs/admin-ui.md)
 - [Deployment](docs/deployment.md)
 
-## License
-
-MIT License - see [LICENSE](LICENSE) for details.
-
-## Author
-
-Portfolio project demonstrating healthcare data integration patterns.

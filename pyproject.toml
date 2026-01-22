@@ -3,15 +3,10 @@ name = "vtc-link"
 version = "1.0.0"
 description = "Hospital vital data interface proxy - Normalizes patient vital signs from various hospital systems and forwards to backend analysis servers"
 readme = "README.md"
-license = {text = "MIT"}
-authors = [
-    {name = "VTC-Link Contributors"}
-]
 keywords = ["healthcare", "vital-signs", "hospital", "integration", "fastapi", "hl7", "medical"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Healthcare Industry",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Medical Science Apps.",
     "Framework :: FastAPI",
