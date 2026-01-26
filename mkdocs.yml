@@ -1,13 +1,143 @@
-site_name: VTC Link
+site_name: VTC-Link
+site_description: Vital Data Interface Server - Hospital vital signs data integration middleware
+site_author: baekenough
+site_url: https://baekenough.github.io/vtc-link/
+
+repo_name: baekenough/vtc-link
+repo_url: https://github.com/baekenough/vtc-link
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: ko
+          name: 한국어
+          build: true
+          nav_translations:
+            Home: 홈
+            Overview: 개요
+            Architecture: 아키텍처
+            Data Model: 데이터 모델
+            Connectors: 커넥터
+            Pipeline: 파이프라인
+            Post-Processing: 후처리
+            Admin UI: 관리자 UI
+            Logging & Monitoring: 로깅 & 모니터링
+            Error Codes: 에러 코드
+            Testing: 테스트
+            Deployment: 배포
+            API Reference: API 레퍼런스
+            Configuration: 설정
+            Contributing: 기여하기
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
 nav:
   - Home: index.md
+  - Overview: overview.md
   - Architecture: architecture.md
   - Data Model: data-model.md
   - Connectors: connectors.md
   - Pipeline: pipeline.md
+  - Post-Processing: postprocess.md
   - Admin UI: admin-ui.md
   - Logging & Monitoring: logging-monitoring.md
   - Error Codes: error-codes.md
-  - postprocess: postprocess.md
+  - Configuration: configuration.md
+  - API Reference: api-reference.md
   - Testing: testing.md
   - Deployment: deployment.md
+  - Contributing: contributing.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/baekenough
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/baekenough
+  generator: false
+  alternate:
+    - name: English
+      link: /vtc-link/en/
+      lang: en
+    - name: 한국어
+      link: /vtc-link/ko/
+      lang: ko
+
+copyright: Copyright &copy; 2026 baekenough
