@@ -239,12 +239,12 @@ uv run pytest tests/test_pipeline_logging.py
 
 Full documentation is available at **[baekenough.github.io/vtc-link](https://baekenough.github.io/vtc-link/)**
 
-- [Architecture](https://baekenough.github.io/vtc-link/en/architecture/)
-- [Data Models](https://baekenough.github.io/vtc-link/en/data-model/)
-- [Connectors](https://baekenough.github.io/vtc-link/en/connectors/)
-- [Pipeline](https://baekenough.github.io/vtc-link/en/pipeline/)
-- [Admin UI](https://baekenough.github.io/vtc-link/en/admin-ui/)
-- [Deployment](https://baekenough.github.io/vtc-link/en/deployment/)
+- [Architecture](https://baekenough.github.io/vtc-link/architecture/)
+- [Data Models](https://baekenough.github.io/vtc-link/data-model/)
+- [Connectors](https://baekenough.github.io/vtc-link/connectors/)
+- [Pipeline](https://baekenough.github.io/vtc-link/pipeline/)
+- [Admin UI](https://baekenough.github.io/vtc-link/admin-ui/)
+- [Deployment](https://baekenough.github.io/vtc-link/deployment/)
 
 **[한국어 문서](https://baekenough.github.io/vtc-link/ko/)**
 

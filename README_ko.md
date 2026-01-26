@@ -244,4 +244,4 @@ uv run pytest tests/test_pipeline_logging.py
 - [관리자 UI](https://baekenough.github.io/vtc-link/ko/admin-ui/)
 - [배포](https://baekenough.github.io/vtc-link/ko/deployment/)
 
-**[English Documentation](https://baekenough.github.io/vtc-link/en/)**
+**[English Documentation](https://baekenough.github.io/vtc-link/)**

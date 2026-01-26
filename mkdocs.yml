@@ -133,7 +133,7 @@ extra:
   generator: false
   alternate:
     - name: English
-      link: /vtc-link/en/
+      link: /vtc-link/
       lang: en
     - name: 한국어
       link: /vtc-link/ko/
