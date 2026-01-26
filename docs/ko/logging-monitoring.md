@@ -312,7 +312,7 @@ ORDER BY postprocess_fail_count DESC;
 
 ### 대시보드 (`/admin/dashboard`)
 
-![대시보드 개요](../images/dashboard-placeholder.png)
+대시보드에서 다음 정보를 확인할 수 있습니다:
 
 - 전체 병원 수
 - 오늘 처리 레코드 수

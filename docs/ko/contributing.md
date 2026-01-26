@@ -596,8 +596,8 @@ SOFTWARE.
 
 질문 전 확인사항:
 
-1. [README](../../README.md) 확인
-2. [문서](../index.md) 검색
+1. [README](https://github.com/baekenough/vtc-link#readme) 확인
+2. [문서](index.md) 검색
 3. 기존 이슈 검색
 4. Google 검색
 

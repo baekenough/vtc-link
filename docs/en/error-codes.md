@@ -460,4 +460,4 @@ LIMIT 24;
 
 - [Logging and Monitoring](logging-monitoring.md) - Telemetry system overview
 - [Configuration Guide](configuration.md) - Hospital and postprocess configuration
-- [Troubleshooting](../troubleshooting.md) - General troubleshooting guide
+- [Deployment Guide](deployment.md) - Production deployment and troubleshooting
