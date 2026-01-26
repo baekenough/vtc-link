@@ -157,7 +157,7 @@ vtc-link/
 
 ```bash
 # 저장소 클론
-git clone https://github.com/yourusername/vtc-link.git
+git clone https://github.com/baekenough/vtc-link.git
 cd vtc-link
 
 # uv로 의존성 설치
@@ -235,11 +235,13 @@ uv run pytest tests/test_pipeline_logging.py
 
 ## 문서
 
-전체 문서는 `docs/` 디렉토리에서 확인할 수 있습니다:
+전체 문서는 **[baekenough.github.io/vtc-link/ko](https://baekenough.github.io/vtc-link/ko/)** 에서 확인할 수 있습니다.
 
-- [아키텍처](docs/architecture.md)
-- [데이터 모델](docs/data-model.md)
-- [커넥터](docs/connectors.md)
-- [파이프라인](docs/pipeline.md)
-- [관리자 UI](docs/admin-ui.md)
-- [배포](docs/deployment.md)
+- [아키텍처](https://baekenough.github.io/vtc-link/ko/architecture/)
+- [데이터 모델](https://baekenough.github.io/vtc-link/ko/data-model/)
+- [커넥터](https://baekenough.github.io/vtc-link/ko/connectors/)
+- [파이프라인](https://baekenough.github.io/vtc-link/ko/pipeline/)
+- [관리자 UI](https://baekenough.github.io/vtc-link/ko/admin-ui/)
+- [배포](https://baekenough.github.io/vtc-link/ko/deployment/)
+
+**[English Documentation](https://baekenough.github.io/vtc-link/en/)**

@@ -159,7 +159,7 @@ vtc-link/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vtc-link.git
+git clone https://github.com/baekenough/vtc-link.git
 cd vtc-link
 
 # Install dependencies with uv
@@ -237,12 +237,14 @@ uv run pytest tests/test_pipeline_logging.py
 
 ## Documentation
 
-Full documentation is available in the `docs/` directory:
+Full documentation is available at **[baekenough.github.io/vtc-link](https://baekenough.github.io/vtc-link/)**
 
-- [Architecture](docs/architecture.md)
-- [Data Models](docs/data-model.md)
-- [Connectors](docs/connectors.md)
-- [Pipeline](docs/pipeline.md)
-- [Admin UI](docs/admin-ui.md)
-- [Deployment](docs/deployment.md)
+- [Architecture](https://baekenough.github.io/vtc-link/en/architecture/)
+- [Data Models](https://baekenough.github.io/vtc-link/en/data-model/)
+- [Connectors](https://baekenough.github.io/vtc-link/en/connectors/)
+- [Pipeline](https://baekenough.github.io/vtc-link/en/pipeline/)
+- [Admin UI](https://baekenough.github.io/vtc-link/en/admin-ui/)
+- [Deployment](https://baekenough.github.io/vtc-link/en/deployment/)
+
+**[한국어 문서](https://baekenough.github.io/vtc-link/ko/)**
 
